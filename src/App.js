@@ -8,7 +8,6 @@ import MyPagination from './components/MyPagination';
 import logo from './logo.svg';
 import './App.css';
 
-//forced to use require here for some reason :/ also must come after imports
 require('bootstrap/dist/css/bootstrap.min.css');
 
 class App extends Component {
