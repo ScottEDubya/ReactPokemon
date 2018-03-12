@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Spinner from './components/Spinner';
 
-it('renders without crashing', () => {
+it('renders a spinner without crashing', () => {
 	const div = document.createElement('div');
-	ReactDOM.render(<App />, div);
+	ReactDOM.render(<Spinner url="reactspinner.png"/>, div);
 	ReactDOM.unmountComponentAtNode(div);
 });
