@@ -26,7 +26,7 @@ class PokeModal extends Component {
         super(props);
 
         this.state = {
-        show: true
+            show: true
         };
 
         this.handleClose = this.handleClose.bind(this);
@@ -34,6 +34,7 @@ class PokeModal extends Component {
 
     handleClose() {
         this.setState({ show: false });
+        this.props.clearModal();
     }
 
     componentWillReceiveProps() {

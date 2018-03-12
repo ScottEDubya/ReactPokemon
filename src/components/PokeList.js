@@ -8,30 +8,40 @@ import './PokeList.css';
 class PokeList extends Component {
     constructor(props) {
         super(props);
-        this.showPokeModal = this.showPokeModal.bind(this);
+        
         this.state = {
-            currentPokemon: null
+            currentPokemonData: null,
+            name: ""
         };
+
+        this.showPokeModal = this.showPokeModal.bind(this);
+        this.clearPokeModal = this.clearPokeModal.bind(this);
     }
 
     showPokeModal(name, url) {
         this.setState({
             isLoadingModalData: true,
             name: name,
-            currentPokemon: null
+            currentPokemonData: null
         });
         fetch(url).then(r=>r.json()).then( json => {
             //update modal
             this.setState({
-                currentPokemon: json
+                isLoadingModalData: false,
+                currentPokemonData: json
             });
         }).catch( err => {
             console.error(err); //sad modal
         });
     }
 
-    // shouldComponentUpdate() {
-    // }
+    clearPokeModal() { //removes the state affiliated with the recently opened modal
+        this.setState({
+            name: "",
+            currentPokemonData: null,
+            isLoadingModalData: false
+        });
+    }
 
     render() {
         try {
@@ -47,8 +57,12 @@ class PokeList extends Component {
         
             return (
                 <div>
-                    { this.state.isLoadingModalData || this.state.currentPokemon
-                        ? <PokeModal currentPokemon={this.state.currentPokemon} name={this.state.name} />
+                    { this.state.isLoadingModalData || this.state.currentPokemonData
+                        ? <PokeModal
+                            currentPokemon={this.state.currentPokemonData}
+                            name={this.state.name}
+                            clearModal={this.clearPokeModal}
+                            />
                         : ""
                     }
                     <ListGroup>

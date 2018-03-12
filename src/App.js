@@ -27,7 +27,6 @@ class App extends Component {
 	}
 
 	loadPokemon(url) {
-		console.log(this.state);
 		return fetch(url).then(res => {return res.json();}).catch( err => {console.error(err);});
 	}
 
@@ -40,7 +39,6 @@ class App extends Component {
 					totalPages: pages,
 					count: json.count
 				});
-				console.log(this.state);
 			} );
 	}
 
